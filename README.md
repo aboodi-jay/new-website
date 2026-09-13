@@ -76,6 +76,17 @@ src/
   (light) by swapping CSS variables via a `data-theme` attribute. Code block
   syntax highlighting also swaps between the matching Mocha/Latte
   highlight.js themes at runtime, so code stays readable in both modes.
+- **Routing**: real URLs via `react-router-dom` — `/`, `/writeups`, `/blog`,
+  `/about`, `/search`, `/post/:id`. `vercel.json` includes a rewrite so
+  refreshing or directly visiting a deep link (e.g. `aboodijay.com/about`)
+  works instead of 404ing at the server level — Vercel serves real static
+  files (assets, images, favicon) directly, and only falls back to
+  `index.html` for paths that don't match an actual file, letting the router
+  take over from there. An unmatched route (a real 404, like a typo'd post
+  slug) renders `src/pages/NotFoundPage.jsx` inside the app rather than
+  `public/404.html` — that static file is kept only as a fallback for hosts
+  that don't get the `vercel.json` rewrite (e.g. if you ever move off
+  Vercel to a host with its own static-404 convention, like GitHub Pages).
 
 ## Changing the font
 

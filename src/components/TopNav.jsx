@@ -1,14 +1,28 @@
-export default function TopNav({ view, goTo, onSearch, theme, toggleTheme }) {
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+
+export default function TopNav({ theme, toggleTheme }) {
+  const location = useLocation()
+  const navigate = useNavigate()
+
   const links = [
-    { id: 'home', label: 'Home' },
-    { id: 'writeups', label: 'Writeups' },
-    { id: 'blog', label: 'Blog' },
-    { id: 'about', label: 'About' },
+    { to: '/', label: 'Home' },
+    { to: '/writeups', label: 'Writeups' },
+    { to: '/blog', label: 'Blog' },
+    { to: '/about', label: 'About' },
   ]
+
+  function handleSearch(q) {
+    if (!q.trim()) {
+      if (location.pathname.startsWith('/search')) navigate('/')
+      return
+    }
+    navigate(`/search?q=${encodeURIComponent(q)}`, { replace: location.pathname.startsWith('/search') })
+  }
+
   return (
     <header className="topnav">
       <div className="topnav-inner">
-        <div className="logo" onClick={() => goTo('home')} style={{ cursor: 'pointer' }}>
+        <Link to="/" className="logo">
           <svg viewBox="0 0 24 24" width="18" height="18" style={{ marginRight: 6, verticalAlign: '-3px' }}>
             <circle cx="12" cy="13" r="7" fill="#cba6f7" />
             <path d="M7 8 L4 3 L11 6 Z" fill="#cba6f7" />
@@ -17,22 +31,22 @@ export default function TopNav({ view, goTo, onSearch, theme, toggleTheme }) {
             <circle cx="14.5" cy="12.5" r="1.1" fill="#1e1e2e" />
           </svg>
           aboodijay
-        </div>
+        </Link>
         <nav className="nav-links">
           {links.map(l => (
-            <button
-              key={l.id}
-              className={view === l.id ? 'active' : ''}
-              onClick={() => goTo(l.id)}
+            <Link
+              key={l.to}
+              to={l.to}
+              className={location.pathname === l.to ? 'active' : ''}
             >
               {l.label}
-            </button>
+            </Link>
           ))}
           <input
             className="nav-search"
             type="text"
             placeholder="Search…"
-            onChange={e => onSearch(e.target.value)}
+            onChange={e => handleSearch(e.target.value)}
           />
           <button
             className="theme-toggle"
