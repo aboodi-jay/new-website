@@ -76,6 +76,15 @@ src/
   (light) by swapping CSS variables via a `data-theme` attribute. Code block
   syntax highlighting also swaps between the matching Mocha/Latte
   highlight.js themes at runtime, so code stays readable in both modes.
+  The swap itself animates two ways: every themed color has a CSS
+  transition so nothing changes instantly (works in every browser), and in
+  Chromium-based browsers (Chrome, Edge) it additionally uses the View
+  Transitions API for a circular "reveal" wipe expanding out from the
+  toggle button — Firefox/Safari fall back to just the smooth color fade.
+  The toggle icon itself also plays a small flourish: a lightbulb
+  flicker-on when switching to light, a moon with twinkling stars when
+  switching to dark. Respects `prefers-reduced-motion` (skips the circular
+  wipe, keeps the fade).
 - **Routing**: real URLs via `react-router-dom` — `/`, `/writeups`, `/blog`,
   `/about`, `/search`, `/post/:id`. `vercel.json` includes a rewrite so
   refreshing or directly visiting a deep link (e.g. `aboodijay.com/about`)

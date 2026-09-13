@@ -1,8 +1,11 @@
+import { useState, useRef } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 export default function TopNav({ theme, toggleTheme }) {
   const location = useLocation()
   const navigate = useNavigate()
+  const [pulsing, setPulsing] = useState(false)
+  const pulseTimeout = useRef(null)
 
   const links = [
     { to: '/', label: 'Home' },
@@ -17,6 +20,13 @@ export default function TopNav({ theme, toggleTheme }) {
       return
     }
     navigate(`/search?q=${encodeURIComponent(q)}`, { replace: location.pathname.startsWith('/search') })
+  }
+
+  function handleThemeClick(e) {
+    toggleTheme(e)
+    setPulsing(true)
+    clearTimeout(pulseTimeout.current)
+    pulseTimeout.current = setTimeout(() => setPulsing(false), 650)
   }
 
   return (
@@ -49,19 +59,25 @@ export default function TopNav({ theme, toggleTheme }) {
             onChange={e => handleSearch(e.target.value)}
           />
           <button
-            className="theme-toggle"
-            onClick={toggleTheme}
+            className={'theme-toggle' + (pulsing ? (theme === 'dark' ? ' pulse-on' : ' pulse-off') : '')}
+            onClick={handleThemeClick}
             title={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
             aria-label="Toggle theme"
           >
             {theme === 'dark' ? (
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8">
-                <circle cx="12" cy="12" r="4.5" />
-                <path d="M12 2.5v2M12 19.5v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2.5 12h2M19.5 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" strokeLinecap="round" />
+              // lightbulb — click to switch to light
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.7">
+                <path d="M9 18h6" strokeLinecap="round" />
+                <path d="M10 21h4" strokeLinecap="round" />
+                <path d="M12 3a6 6 0 0 0-3.6 10.8c.6.45.9 1.15.9 1.9V16h5.4v-.3c0-.75.3-1.45.9-1.9A6 6 0 0 0 12 3Z" />
+                <path className="bulb-rays" d="M12 0.5v1.2M4.2 4.2l.9.9M19.8 4.2l-.9.9M1.5 12h1.2M21.3 12h1.2" strokeLinecap="round" />
               </svg>
             ) : (
+              // crescent moon with a couple of stars — click to switch to dark
               <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                 <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z" />
+                <circle className="moon-star moon-star-1" cx="18.5" cy="6" r="0.9" />
+                <circle className="moon-star moon-star-2" cx="21" cy="10" r="0.6" />
               </svg>
             )}
           </button>

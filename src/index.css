@@ -33,6 +33,26 @@
 }
 *{box-sizing:border-box;}
 html,body,#root{margin:0;padding:0;min-height:100%;}
+
+/* Smooth, visible theme swap instead of an instant flip — every element
+   that uses a themed color eases into its new value. */
+*, *::before, *::after{
+  transition: background-color .45s ease, color .4s ease, border-color .4s ease, box-shadow .4s ease, fill .4s ease, stroke .4s ease;
+}
+
+/* Where the browser supports the View Transitions API (Chromium-based),
+   the toggle button drives its own circular "reveal" animation via JS
+   (see useTheme.js) — disable the browser's default cross-fade so it
+   doesn't fight with that. Unsupported browsers just get the transition
+   rule above, which is still a smooth fade rather than an instant swap. */
+::view-transition-old(root),
+::view-transition-new(root){
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root){ z-index: 1; }
+::view-transition-new(root){ z-index: 2; }
+
 body{
   background:
     radial-gradient(ellipse 900px 500px at 15% -10%, rgba(203,166,247,0.10), transparent 60%),
@@ -79,6 +99,55 @@ a{color:inherit;text-decoration:none;}
   color:var(--text-muted);cursor:pointer;
 }
 .theme-toggle:hover{color:var(--accent);border-color:var(--accent-dim);}
+
+/* Lightbulb "turning on" — filament brightens and rays flicker outward */
+.bulb-rays{opacity:0;transition:opacity .3s ease;}
+.theme-toggle.pulse-on{
+  color:#f9e2af;border-color:#f9e2af;
+  animation:bulbGlowRing .6s ease;
+}
+.theme-toggle.pulse-on .bulb-rays{
+  opacity:1;
+  animation:bulbRays .6s ease;
+}
+.theme-toggle.pulse-on svg{
+  animation:bulbFlicker .6s ease;
+}
+@keyframes bulbGlowRing{
+  0%{box-shadow:0 0 0 0 rgba(249,226,175,0);}
+  35%{box-shadow:0 0 0 6px rgba(249,226,175,.35);}
+  100%{box-shadow:0 0 0 10px rgba(249,226,175,0);}
+}
+@keyframes bulbFlicker{
+  0%{filter:drop-shadow(0 0 0 transparent);opacity:.5;}
+  20%{filter:drop-shadow(0 0 1px #f9e2af);opacity:1;}
+  40%{filter:drop-shadow(0 0 0 transparent);opacity:.6;}
+  60%{filter:drop-shadow(0 0 5px #f9e2af);opacity:1;}
+  100%{filter:drop-shadow(0 0 3px #f9e2af);opacity:1;}
+}
+@keyframes bulbRays{
+  0%{opacity:0;stroke-dashoffset:4;}
+  60%{opacity:1;}
+  100%{opacity:0;stroke-dashoffset:0;}
+}
+
+/* Moon "settling in" — the crescent dims slightly and stars twinkle on */
+.theme-toggle.pulse-off{
+  animation:moonGlowRing .6s ease;
+}
+.moon-star{opacity:0;transform-origin:center;}
+.theme-toggle.pulse-off .moon-star-1{animation:starTwinkle .6s ease .1s forwards;}
+.theme-toggle.pulse-off .moon-star-2{animation:starTwinkle .6s ease .25s forwards;}
+@keyframes moonGlowRing{
+  0%{box-shadow:0 0 0 0 rgba(180,190,254,0);}
+  35%{box-shadow:0 0 0 6px rgba(180,190,254,.3);}
+  100%{box-shadow:0 0 0 10px rgba(180,190,254,0);}
+}
+@keyframes starTwinkle{
+  0%{opacity:0;transform:scale(0);}
+  60%{opacity:1;transform:scale(1.3);}
+  100%{opacity:1;transform:scale(1);}
+}
 
 main{max-width:1080px;margin:0 auto;padding:48px 32px 80px;}
 .page{max-width:816px;margin:0 auto;}
