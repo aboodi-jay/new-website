@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300">
+  <rect width="640" height="300" rx="10" fill="#181825"/>
+  <rect width="320" height="300" rx="10" fill="#181825" stroke="#45475a"/>
+  <rect x="320" width="320" height="300" rx="10" fill="#1a1a2b" stroke="#45475a"/>
+
+  <text x="20" y="28" font-family="JetBrains Mono, monospace" font-size="12" fill="#cba6f7">REQUEST</text>
+  <text x="340" y="28" font-family="JetBrains Mono, monospace" font-size="12" fill="#a6e3a1">RESPONSE</text>
+  <line x1="0" y1="40" x2="640" y2="40" stroke="#45475a"/>
+
+  <g font-family="JetBrains Mono, monospace" font-size="12.5" fill="#cdd6f4">
+    <text x="20" y="64">POST /api/reset-password HTTP/1.1</text>
+    <text x="20" y="86">Host: acme-corp.example</text>
+    <text x="20" y="108">Content-Type: application/json</text>
+    <text x="20" y="130" fill="#f9e2af">Authorization: Bearer eyJhbGciOi...</text>
+    <text x="20" y="164">{</text>
+    <text x="34" y="186">"user_id": <tspan fill="#fab387">4821</tspan>,</text>
+    <text x="34" y="208">"new_password": "hunter2"</text>
+    <text x="20" y="230">}</text>
+  </g>
+
+  <g font-family="JetBrains Mono, monospace" font-size="12.5" fill="#cdd6f4">
+    <text x="340" y="64" fill="#a6e3a1">HTTP/1.1 200 OK</text>
+    <text x="340" y="86">Content-Type: application/json</text>
+    <text x="340" y="120">{</text>
+    <text x="354" y="142">"success": <tspan fill="#a6e3a1">true</tspan>,</text>
+    <text x="354" y="164">"user_id": <tspan fill="#fab387">4821</tspan></text>
+    <text x="340" y="186">}</text>
+    <text x="340" y="220" fill="#f38ba8">// no ownership check —</text>
+    <text x="340" y="240" fill="#f38ba8">// any authenticated user's ID works here</text>
+  </g>
+</svg>

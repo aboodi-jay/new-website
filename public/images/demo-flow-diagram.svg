@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260">
+  <rect width="640" height="260" rx="10" fill="#181825"/>
+
+  <g font-family="Jost, sans-serif" font-size="13" fill="#cdd6f4">
+    <rect x="30" y="90" width="130" height="60" rx="8" fill="#313244" stroke="#585b70"/>
+    <text x="95" y="115" text-anchor="middle">Attacker</text>
+    <text x="95" y="133" text-anchor="middle" font-size="11" fill="#9399b2">(you)</text>
+
+    <rect x="255" y="90" width="130" height="60" rx="8" fill="#313244" stroke="#585b70"/>
+    <text x="320" y="115" text-anchor="middle">Login API</text>
+    <text x="320" y="133" text-anchor="middle" font-size="11" fill="#9399b2">/api/reset</text>
+
+    <rect x="480" y="90" width="130" height="60" rx="8" fill="#45283b" stroke="#f38ba8"/>
+    <text x="545" y="115" text-anchor="middle" fill="#f38ba8">User DB</text>
+    <text x="545" y="133" text-anchor="middle" font-size="11" fill="#f38ba8">exposed</text>
+
+    <line x1="160" y1="120" x2="253" y2="120" stroke="#cba6f7" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="207" y="108" text-anchor="middle" font-size="11" fill="#cba6f7">1. forge user_id</text>
+
+    <line x1="385" y1="120" x2="478" y2="120" stroke="#f38ba8" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="432" y="108" text-anchor="middle" font-size="11" fill="#f38ba8">2. no auth check</text>
+  </g>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#cba6f7"/>
+    </marker>
+  </defs>
+</svg>
