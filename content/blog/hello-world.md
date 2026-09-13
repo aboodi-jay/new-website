@@ -1,5 +1,5 @@
 ---
-title: Hello Stranger
+title: Hello, world
 date: 2026-09-13
 tags: [meta]
 ---

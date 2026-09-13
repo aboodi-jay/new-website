@@ -53,6 +53,32 @@ an automatic rebuild and deploy — no editor UI, no auth screen, no database.
 Access control is just "who has push access to the repo," same as any other
 git-based static site.
 
+## Link previews (Open Graph)
+
+`index.html` has Open Graph and Twitter Card meta tags, plus `public/og-image.png`
+(the actual preview image, 1200×630 — the standard size). This is what
+WhatsApp, Discord, Slack, iMessage, etc. read to build that title +
+description + image preview card when someone shares a link.
+
+**Limitation worth knowing:** since this is a client-side-rendered SPA (no
+server-side rendering), every URL on the site shares the *same* preview —
+sharing a specific post link shows the same aboodijay.com card as sharing
+the homepage, not that post's own title/image. Fixing that properly means
+either prerendering each post to its own static HTML at build time, or
+moving to a framework with SSR/SSG (Astro, Next.js, etc.) — a bigger change
+than a couple of meta tags. Ask if you want that built out; for now, a
+solid site-wide preview covers the common case well.
+
+The source `design/og-image.svg` is kept for future edits — regenerate the
+PNG after editing it with:
+
+```bash
+rsvg-convert -w 1200 -h 630 design/og-image.svg -o public/og-image.png
+```
+
+(`rsvg-convert` comes from the `librsvg2-bin` package on Debian/Ubuntu, or
+`brew install librsvg` on macOS.)
+
 ## Structure
 
 ```

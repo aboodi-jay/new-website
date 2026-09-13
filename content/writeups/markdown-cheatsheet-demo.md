@@ -1,6 +1,6 @@
 ---
 title: Markdown Cheatsheet & Feature Demo
-date: 2026-09-13
+date: 2026-09-12
 tags: [meta, markdown, demo]
 ---
 

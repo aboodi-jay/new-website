@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="glow1" cx="15%" cy="10%" r="60%">
+      <stop offset="0%" stop-color="#cba6f7" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#cba6f7" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="90%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#b4befe" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#b4befe" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="mascotBody" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#cba6f7"/>
+      <stop offset="100%" stop-color="#b4befe"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#1e1e2e"/>
+  <rect width="1200" height="630" fill="url(#glow1)"/>
+  <rect width="1200" height="630" fill="url(#glow2)"/>
+
+  <!-- mascot, scaled up and placed right -->
+  <g transform="translate(870,155) scale(1.7)">
+    <path d="M55 60 L40 20 L85 50 Z" fill="#cba6f7"/>
+    <path d="M145 60 L160 20 L115 50 Z" fill="#cba6f7"/>
+    <path d="M60 55 L50 32 L78 50 Z" fill="#f5c2e7"/>
+    <path d="M140 55 L150 32 L122 50 Z" fill="#f5c2e7"/>
+    <circle cx="100" cy="105" r="58" fill="url(#mascotBody)"/>
+    <rect x="54" y="82" width="92" height="42" rx="11" fill="#11111b"/>
+    <rect x="63" y="93" width="10" height="10" rx="2" fill="#a6e3a1"/>
+    <text x="78" y="106" font-family="JetBrains Mono, monospace" font-size="12" font-weight="600" fill="#a6e3a1">whoami</text>
+    <rect x="63" y="107" width="26" height="5" rx="2.5" fill="#585b70"/>
+    <line x1="30" y1="112" x2="58" y2="108" stroke="#b4befe" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="30" y1="123" x2="58" y2="123" stroke="#b4befe" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="170" y1="112" x2="142" y2="108" stroke="#b4befe" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="170" y1="123" x2="142" y2="123" stroke="#b4befe" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M96 135 L104 135 L100 141 Z" fill="#f38ba8"/>
+  </g>
+
+  <!-- wordmark -->
+  <g transform="translate(90,220)">
+    <circle cx="14" cy="7" r="16" fill="#cba6f7"/>
+    <path d="M2 -2 L-8 -18 L16 -10 Z" fill="#cba6f7"/>
+    <path d="M26 -2 L36 -18 L12 -10 Z" fill="#cba6f7"/>
+    <circle cx="8" cy="4" r="2.4" fill="#1e1e2e"/>
+    <circle cx="20" cy="4" r="2.4" fill="#1e1e2e"/>
+  </g>
+  <text x="132" y="235" font-family="Jost, sans-serif" font-weight="700" font-size="44" fill="#cdd6f4">aboodijay</text>
+
+  <text x="90" y="320" font-family="Jost, sans-serif" font-weight="700" font-size="58" fill="#ece7f7">Web app security</text>
+  <text x="90" y="385" font-family="Jost, sans-serif" font-weight="700" font-size="58" fill="#ece7f7">writeups &amp; notes</text>
+
+  <text x="90" y="440" font-family="JetBrains Mono, monospace" font-size="20" fill="#a6adc8">Pentest writeups, CTF walkthroughs, and testing notes.</text>
+
+  <g font-family="JetBrains Mono, monospace" font-size="16" fill="#8c5cd6">
+    <rect x="90" y="475" width="110" height="34" rx="17" fill="#313244"/>
+    <text x="145" y="497" text-anchor="middle" fill="#cba6f7">writeups</text>
+    <rect x="212" y="475" width="80" height="34" rx="17" fill="#313244"/>
+    <text x="252" y="497" text-anchor="middle" fill="#cba6f7">blog</text>
+  </g>
+</svg>
