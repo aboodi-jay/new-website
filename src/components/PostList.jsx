@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion'
 import { formatDate, excerpt } from '../lib/date'
 import FloatingMascot from './FloatingMascot'
+import { useIsMobile } from '../hooks/useIsMobile'
 
 export default function PostList({ posts, onOpen, onTag, title, subtitle, mascotVariant }) {
+  const isMobile = useIsMobile()
   const sorted = [...posts].sort((a, b) => b.date - a.date)
 
   return (
@@ -13,7 +15,7 @@ export default function PostList({ posts, onOpen, onTag, title, subtitle, mascot
             <h1 style={{ fontSize: 26 }}>{title}</h1>
             {subtitle && <p style={{ marginBottom: 24 }}>{subtitle}</p>}
           </div>
-          {mascotVariant && <FloatingMascot variant={mascotVariant} size={130} />}
+          {mascotVariant && <FloatingMascot variant={mascotVariant} size={isMobile ? 90 : 130} />}
         </div>
       )}
       {sorted.length === 0 ? (

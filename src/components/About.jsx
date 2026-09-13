@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
 import FloatingMascot from './FloatingMascot'
+import { useIsMobile } from '../hooks/useIsMobile'
 
 export default function About() {
+  const isMobile = useIsMobile()
   return (
     <motion.div
       className="page"
@@ -18,7 +20,7 @@ export default function About() {
             and pentest writeups. Edit this component to make it yours.
           </p>
         </div>
-        <FloatingMascot variant="about" size={180} />
+        <FloatingMascot variant="about" size={isMobile ? 110 : 180} />
       </div>
     </motion.div>
   )

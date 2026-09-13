@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import FloatingMascot from './FloatingMascot'
+import { useIsMobile } from '../hooks/useIsMobile'
 
 const ICONS = {
   writeups: (
@@ -18,6 +19,7 @@ const ICONS = {
 }
 
 export default function Hero({ goTo }) {
+  const isMobile = useIsMobile()
   const cards = [
     { id: 'writeups', title: 'Writeups', desc: 'CTF, lab, and bug bounty style writeups from hands-on testing.' },
     { id: 'blog', title: 'Blog posts', desc: 'Longer-form articles, tutorials, and opinions on offensive security.' },
@@ -36,7 +38,7 @@ export default function Hero({ goTo }) {
             testing and CTF writeups. Have a look around.
           </p>
         </div>
-        <FloatingMascot variant="default" size={220} />
+        <FloatingMascot variant="default" size={isMobile ? 140 : 220} />
       </div>
       <div className="directory-grid">
         {cards.map((c, i) => (

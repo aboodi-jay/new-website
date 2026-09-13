@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import FloatingMascot from './FloatingMascot'
+import { useIsMobile } from '../hooks/useIsMobile'
 
 // Sits fixed bottom-right. Hidden until the user first scrolls, then shows
 // the mascot itself (instead of a plain arrow) — clicking it scrolls to
 // the top of the page, and its terminal switches to showing "go up".
 export default function MascotDock() {
+  const isMobile = useIsMobile()
   const [everScrolled, setEverScrolled] = useState(false)
   const [visible, setVisible] = useState(false)
 
@@ -38,7 +40,7 @@ export default function MascotDock() {
           transition={{ duration: 0.25, ease: 'easeOut' }}
           title="Back to top"
         >
-          <FloatingMascot variant="goup" size={100} enableFacts={false} onClick={scrollToTop} />
+          <FloatingMascot variant="goup" size={isMobile ? 74 : 100} enableFacts={false} onClick={scrollToTop} />
         </motion.div>
       )}
     </AnimatePresence>

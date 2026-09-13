@@ -9,10 +9,12 @@ import CodeBlock from './CodeBlock'
 import FloatingMascot from './FloatingMascot'
 import { useTypewriter } from '../hooks/useTypewriter'
 import { highlightLanguages } from '../lib/highlightLanguages'
+import { useIsMobile } from '../hooks/useIsMobile'
 
 const VARIANT_BY_TYPE = { Writeup: 'writeups', Blog: 'blog' }
 
 export default function PostDetail({ post, onBack }) {
+  const isMobile = useIsMobile()
   const duration = post ? Math.min(Math.max(post.content.length * 2.2, 500), 1800) : 900
   const { revealed, done } = useTypewriter(post?.content, duration)
 
@@ -36,7 +38,7 @@ export default function PostDetail({ post, onBack }) {
               <span>{formatDate(post.date)}</span>
             </div>
           </div>
-          <FloatingMascot variant={VARIANT_BY_TYPE[post.type] || 'default'} size={80} />
+          <FloatingMascot variant={VARIANT_BY_TYPE[post.type] || 'default'} size={isMobile ? 56 : 80} />
         </div>
         <div className={'prose' + (done ? '' : ' typing')}>
           <ReactMarkdown
